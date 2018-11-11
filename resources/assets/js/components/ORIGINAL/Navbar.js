@@ -16,7 +16,7 @@ export default class Navbar extends Component{
                             <a className="nav-link" href="controlpanel">Control Panel</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="Maps">Maps</a>
+                            <a className="nav-link" href="layout">Maps</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link active" href="/">Socket <span className="sr-only">(current)</span></a>

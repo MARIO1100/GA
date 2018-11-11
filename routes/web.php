@@ -30,3 +30,4 @@ Route::get('/layout', function(){
 Route::get('/form/name/{name?}', function($name = null){
     return 'Hello Mr: ' . $name;
 });
+Route::get('/Maps','MapController@index');

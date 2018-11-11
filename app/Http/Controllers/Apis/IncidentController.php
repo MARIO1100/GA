@@ -39,10 +39,11 @@ class IncidentController extends Controller
 
         $latitud = $request->get('latitud');
         $longitud = $request->get('longitud');
-        $location = Location::updateOrCreate([
-            'latitud' => $latitud,
-            'longitud' => $longitud
-        ]);
+        
+        $location = new Location();
+        $location->latitud = $latitud;
+        $location->longitud = $longitud;
+        $location->save();
 
         $speed = $request->get('speed');
         $user_id = $request->get('user_id');

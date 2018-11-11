@@ -82,7 +82,6 @@ class IncidentControllerSocket extends Controller
         $accident = $this->accidentProbability();
 
         if($accident){
-            $location = 'Av. Siempre viva, Ejemplo';
             $speed = $this->getSpeed();
             $user_id = 1;
             $now = Carbon::now()->toDateString(); //date 
@@ -92,11 +91,12 @@ class IncidentControllerSocket extends Controller
 
             $latitud = '-116.8736288';
             $longitud = '32.4705472';
-            $location = Location::updateOrCreate([
-                'latitud' => $latitud,
-                'longitud' => $longitud
-            ]);
 
+            $location = new Location();
+                $location->latitud = $latitud;
+                $location->longitud = $longitud;
+            $location->save();
+                
             $incident = new Incident();
             
             $incident->location_id = $location->id;
@@ -115,15 +115,4 @@ class IncidentControllerSocket extends Controller
         }
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $incidents = Incident::all();
-
-        return response()->json($incidents);
-    }
 }

@@ -93,49 +93,30 @@ export default class Graph extends Component{
     
     render(){ 
         return(
-            <div class="container-fluid">               
+            <div>
+                <h1></h1>
+
                 <div className="row">
-                    <div className="col-md-12 text-left">
-                        <h2>Record of shock per hours</h2> 
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1 text-center">
-                        <div class="text-rotate"><h1>QTY (Quantity)</h1></div>
-                    </div>
-                    <div class="col-md-11">
+                    <div className="col-md-12">
+                        <h2>Record of shock per hours</h2>
                         <div id="perHour" style={height}></div>
-                        
                     </div>
-                    <div class="col-md-11 col-md-offset-1 text-center">
-                        <h2>Hours</h2>
-                    </div>
-                   
                 </div>
                 <div className="row">
-                    <div className="col-md-12 text-left">                   
-                        <h2>Record of shock per days</h2>	
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1 text-center">
-                        <div class="text-rotate text-center">
-                            <h1>QTY (Quantity)</h1>
-                        </div>
-                    </div>
-                    <div class="col-md-11">
+                    <div className="col-md-12">
+                        <h2>Record of shock per days</h2>
+						
                         <div id="perDay" style={height}></div>
                     </div>
-                    <div class="col-md-11 col-md-offset-1 text-center">
-                        <h2>Days</h2>
-                    </div>
                 </div>
-                
+                <button type="button" id="botData" className="btn btn-primary">Load Data</button>
             </div>
         );
     }
 }
-
+<div class="row">
+			 <p class="text-center" style="font-size:25px;">Hours</p>
+		</div>
 var graph = document.getElementById('graph');
 if(graph){
     ReactDOM.render(<Graph />, graph);

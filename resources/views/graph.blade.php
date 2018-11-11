@@ -2,4 +2,5 @@
 
 @section('content')
     <div id="graph"></div>
+    
 @endsection

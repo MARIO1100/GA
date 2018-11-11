@@ -87,7 +87,7 @@ export default class ControlPanel extends Component{
         return(
             <div>
                 <form style={styleForm} onSubmit={this.handleSubmit.bind(this)}>
-                <h1>CONTROL PANEL</h1>
+                <h1>MC RULES - CONTROLPANEL</h1>
                     <div className="row">
                         <div className="col">
                             <label htmlFor="formGroupExampleInput" >First Contact - Name</label>

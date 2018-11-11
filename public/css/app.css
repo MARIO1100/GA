@@ -10417,3 +10417,10 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.text-rotate {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  font-size: 15px;
+  margin-top: 110px;
+}
+
