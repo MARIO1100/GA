@@ -22,6 +22,6 @@
         @yield('content')
         <script src="/js/app.js" type="text/javascript"></script>
         <script src="/js/morris.min.js" type="text/javascript"></script>
-        <script src="/js/choques.js" type="text/javascript"></script>
+        <script src="/js/map.js" type="text/javascript"></script>
     </body>
 </html>

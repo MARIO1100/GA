@@ -23,6 +23,8 @@ Route::resource('user', 'Apis\UserController');
 Route::resource('incident', 'Apis\IncidentController');
 Route::resource('location', 'Apis\LocationController');
 
+Route::get('getData', 'Apis\LocationController@getData');
+
 Route::post('socket', 'Apis\IncidentControllerSocket@saveAccident');
 
 Route::get('dashPerHour', 'Apis\DashboardController@getIncidentsPerHour');

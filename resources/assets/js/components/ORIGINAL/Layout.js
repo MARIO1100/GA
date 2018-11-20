@@ -5,7 +5,7 @@ export default class Layout extends Component{
     render(){
         return(
             <div>
-                <h1>PUNTOS DE EMERGENCIA</h1>
+                <h1>Incident points</h1>
             </div>
         );
     }
