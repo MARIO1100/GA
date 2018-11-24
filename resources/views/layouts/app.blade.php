@@ -13,9 +13,10 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 
+        <link href="/css/modal.css" rel="stylesheet" type="text/css">
+
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet" type="text/css">
-        <link href="/css/morris.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div id="navbar"></div>

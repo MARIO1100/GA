@@ -1,13 +1,8 @@
 @extends('layouts.app');
 
 @section('content')
-    <div id="layout"></div> 
-
-
-   <!doctype html>
 <html lang="es">
   <head>
-
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,13 +10,15 @@
     <title>Using Maps</title>
 
     <script src="main.js"></script>
-      <style type="text/css">
-          #map { height: 600px; width: 100%; }
-      </style>
-  </head>
-  <body onload="init();">
-      <div id="map"></div>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9ZN1ADvXCqPmgcnxEIOU6hd1T42w7olo&callback=initMap" async defer></script>
-  </body>
+
+    <style type="text/css">
+        #map { height: 600px; width: 100%; }
+    </style>
+      
+    </head>
+    <body onload="init();">
+        <div id="map"></div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9ZN1ADvXCqPmgcnxEIOU6hd1T42w7olo&callback=initMap" async defer></script>
+    </body>
 </html>
 @endsection

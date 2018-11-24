@@ -3,120 +3,88 @@ var arrayMarker;
 // map
 var map;
 
-let contents = [
-    {header:"Juan's Accident", speed:79, date:'10/31/18', title: 'Accident'},
-    {header:"Mario's Accident", speed:88, date:'05/27/17', title: 'Accident'},
-    {header:"Robert's Accident", speed:93, date:'02/18/18', title: 'Accident'}
-];
-
 function init(){
     getData();
-    // array marker
-    arrayMarker = [
-        {
-            coords:{lat:32.460935,lng:-116.875984},
-            content: '<h2>Aurrera Store</h2>',
-            title: 'DGNR'
-        },
-        {
-            coords:{lat:32.462419,lng:-116.873088},
-            content: '<h2>Michoacana Store</h2>',
-            title: 'DGNR'
-        },
-        {
-            coords:{lat:32.463071,lng:-116.875576},
-            content: '<h2>COBACH El Florido</h2>',
-            title: 'DGNR'
-        },
-        {
-            coords:{lat:32.460826,lng:-116.880681},
-            content: '<h2>Swap Meet La Joya</h2>',
-            title: 'DGNR'
-        }
-    ];
-
-    var u = {header:"Ana's Accident", speed:59, date:'04/11/16', title: 'Accident'};
-    
-    contents.push(u);
-
-    // change contents
-    for(var i = 0; i< arrayMarker.length; i++){
-        var x = contents[i];
-        // add marker
-        arrayMarker[i].content = setContent(x);
-        arrayMarker[i].title = x.title;
-    }
-    console.log(arrayMarker);
 }
 
+// get data from DB
 function getData(){
+    // creating http variable
     var http = new XMLHttpRequest();
+    // api's url
     var url = "api/getData";
     http.open('GET', url);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.onreadystatechange = function() {
+        // if it is ok
         if(http.readyState == 4 && http.status == 200) {
+            // convert responseText to JSON
             let response = JSON.parse(http.responseText);
 
+            // iterate incidents
             response.forEach(incident => {
+                // add each incident found
                 addIncident(incident);
             });
         }
    }
+   // consume api
    http.send();
 }
 
+// add incident to the map
 function addIncident(incident){
-    let name = incident.name + incident.lastname + "'s accident";
+    // create data for content from the incident
+    let name = incident.name +  ' ' + incident.lastname + "'s accident";
     let cont = {header: name, speed: incident.speed, date: incident.date, title: incident.name + "'s incident"};
 
+    // get incident's content
     let contentInc = setContent(cont);
 
+    // create marker with data getted from incident
     let markerInc = { 
         coords: {lat: parseFloat(incident.latitud), lng: parseFloat(incident.longitud)},
         content: contentInc
     }
-    
+    // create marker and add it to map
     addMarker(markerInc);
 }
 
-
+// send data, and transform it to the content for infowindow (for marker)
 function setContent(data){
     // create content with HTML code, adding variable data
-    var content = "<div class='' style='max-width: 15rem; height:100%;'>" + 
-                    "<div class='header'><h5>" + data.header + "</h5></div>" +
-                    "<div class='body text-dark'>" + 
-                        "<h6 class='subtitle mb-1 text-muted'>Speed: " + data.speed + " KM/H</h6>" +
-                        "<h6 class='subtitle mb-1 text-muted'>Date: " + data.date + "</h6>" +
-                    "</div>"+
-                "</div>";
+    let content = '<div id="content">'+
+        '<h3 id="firstHeading" class="firstHeading">' +  data.header + '</h3>'+
+        '<div id="bodyContent">'+
+            '<h6>Speed: ' + data.speed + 'KM/H</h6>' +
+            '<h6><b>date:</b> ' + data.date + '</h6>' +
+        '</div>'+
+    '</div>';
+
     // return content
     return content;
 }
 
+// initializing map
 function initMap(){
     init();
     //div
     var div = document.getElementById('map');
+    // center focus
+    let centerMap = {lat:32.4601702,lng:-116.82541789999999};
     // map options
     var options = {
         zoom: 16,
-        center:{lat:32.460935,lng:-116.875984}
+        center: centerMap
     }
     
-    map = new google.maps.Map(div, options);    
-
-    // loop to add markers
-    for(var i = 0; i< arrayMarker.length; i++){
-        // add marker
-        addMarker(arrayMarker[i]);
-    }
-
+    // initialize map
+    map = new google.maps.Map(div, options);
 }
 
 // Add Marker Function
 function addMarker(props){
-    // add marker
+    // add marker with its parameters
     var marker = new google.maps.Marker({
         position:props.coords,
         map:map,
@@ -125,11 +93,14 @@ function addMarker(props){
 
     //check if there's content
     if(props.content){
+        // creating info window and adding content
         var infoWindow = new google.maps.InfoWindow({
             content:props.content
         });
 
+        // adding click listener to marker
         marker.addListener('click', function(){
+            // adding info window
             infoWindow.open(map, marker);
         });
     }
