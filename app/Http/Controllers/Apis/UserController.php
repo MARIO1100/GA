@@ -3,6 +3,7 @@
 namespace GolpeAvisa\Http\Controllers\Apis;
 
 use GolpeAvisa\User;
+use Illuminate\Support\Facades\DB;
 use GolpeAvisa\Person;
 use Illuminate\Http\Request;
 use GolpeAvisa\Http\Controllers\Controller;
@@ -21,6 +22,23 @@ class UserController extends Controller
         
         
         return response()->json($users);
+    }
+
+    public function getContact($id){
+        $data;
+        
+        $user = User::find($id);
+        $contact = DB::table('contacts')
+            ->select('cellphone')
+            ->where('user_id', $id)
+            ->first();
+        
+        $person = Person::find($user->person_id);
+
+
+        $data = $contact->cellphone .';'. $person->name . ' ' . $person->lastname;
+
+        return response($data);
     }
 
     /**
