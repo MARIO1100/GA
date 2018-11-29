@@ -29,14 +29,14 @@ class UserController extends Controller
         
         $user = User::find($id);
         $contact = DB::table('contacts')
-            ->select('cellphone')
+            ->select('cellphone', 'name')
             ->where('user_id', $id)
             ->first();
         
         $person = Person::find($user->person_id);
 
 
-        $data = $contact->cellphone .';'. $person->name . ' ' . $person->lastname;
+        $data = $contact->cellphone .';'. $contact->name .';'. $person->name . ' ' . $person->lastname;
 
         return response($data);
     }
